@@ -1,0 +1,25 @@
+# Linux
+# CREATE DATABASE IF NOT EXISTS nxshop DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+python3 manage.py makemigrations untitled
+python3 manage.py sqlmigrate untitled 0001
+python3 manage.py migrate
+python3 manage.py createsuperuser
+python3 manage.py collectstatic
+
+# https://docs.djangoproject.com/en/1.9/ref/django-admin
+see manage.py use
+
+pip3 install -e git://github.com/joestump/django-ajax#egg=django-ajax
+
+# Windows
+
+python manage.py makemigrations untitled
+python manage.py sqlmigrate untitled 0001
+python manage.py migrate
+
+python manage.py createsuperuser
+python manage.py collectstatic
+
+
+# windows redis port 6000
