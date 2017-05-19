@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from os.path import dirname, abspath, join, normpath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -24,10 +24,10 @@ SECRET_KEY = '!6nao+15my7(hdi=dmd(i5w_os_$-gpk2b)6vg$31=+b9@%3#2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+IS_NEW_MIGRATE = False
 JWT_ALLOW_REFRESH = False
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'django_select2',
+    'easy_thumbnails',
+    'image_cropping',
+    'django_ajax',
+    'cruds_adminlte',
+    'media'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +62,10 @@ ROOT_URLCONF = 'BoPress.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            normpath(join(dirname(dirname(abspath(__file__))),
+                          'BoPress', 'templates')),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BoPress.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -80,7 +89,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -100,13 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh_Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC+8'
 
 USE_I18N = True
 
@@ -114,8 +121,25 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+IMAGE_CROPPING_JQUERY_URL = None
+INTERNAL_IPS = ('127.0.0.1',)
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
+
+THUMBNAIL_PROCESSORS = (
+                           'image_cropping.thumbnail_processors.crop_corners',
+                       ) + thumbnail_settings.THUMBNAIL_PROCESSORS
+
+TIME_FORMAT = 'h:i A'
+DATETIME_FORMAT = 'm/d/Y H:i:s'
+DATE_FORMAT = "m/d/Y"
+
+TIME_INPUT_FORMATS = ['%I:%M %p']
