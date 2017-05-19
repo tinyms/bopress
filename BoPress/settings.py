@@ -24,7 +24,7 @@ SECRET_KEY = '!6nao+15my7(hdi=dmd(i5w_os_$-gpk2b)6vg$31=+b9@%3#2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-IS_NEW_MIGRATE = False
+
 JWT_ALLOW_REFRESH = False
 
 ALLOWED_HOSTS = []
@@ -38,13 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'django_select2',
     'easy_thumbnails',
     'image_cropping',
     'django_ajax',
-    'cruds_adminlte',
-    'media'
+    'aboutconfig'
 ]
 
 MIDDLEWARE = [
@@ -125,21 +123,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
-LOGIN_REDIRECT_URL = '/login'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-IMAGE_CROPPING_JQUERY_URL = None
-INTERNAL_IPS = ('127.0.0.1',)
-
-from easy_thumbnails.conf import Settings as thumbnail_settings
-
-THUMBNAIL_PROCESSORS = (
-                           'image_cropping.thumbnail_processors.crop_corners',
-                       ) + thumbnail_settings.THUMBNAIL_PROCESSORS
-
-TIME_FORMAT = 'h:i A'
-DATETIME_FORMAT = 'm/d/Y H:i:s'
-DATE_FORMAT = "m/d/Y"
-
-TIME_INPUT_FORMATS = ['%I:%M %p']
