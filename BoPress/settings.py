@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_ajax',
     'django_filters',
     'guardian',
+    'oauth2',
     'aboutconfig'
 ]
 
