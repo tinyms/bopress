@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from rest_framework import routers, serializers, viewsets
 from django.contrib.auth.models import User
+from oauth2.views import WeXinApiView
 
 
 # Serializers define the API representation.
@@ -38,7 +39,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    # url(r'^$', IndexView.as_view()),
+    url(r'^oauth2/$', WeXinApiView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
