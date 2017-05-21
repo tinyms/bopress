@@ -1,12 +1,16 @@
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from oauth2.models import OAuth2
-from django.contrib.auth.models import User
-from oauth2.serializers import OAuth2Serializer, OAuth2VerifySerializer
 import requests
 from aboutconfig import get_config
+from django.contrib.auth.models import User
+from rest_framework import mixins
+from rest_framework import status
+from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
+
+from oauth2.models import OAuth2
+from oauth2.serializers import OAuth2VerifySerializer, OAuth2Serializer
+from oauth2.permissions import IsOwner
 
 
 class WeXinApiView(APIView):
@@ -46,3 +50,17 @@ class WeXinApiView(APIView):
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Oauth2ViewSet(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.ListModelMixin,
+                    GenericViewSet):
+    """
+    A viewset that provides default `create()`, `retrieve()`, `update()`,
+    `partial_update()`, `destroy()` and `list()` actions.
+    """
+    queryset = OAuth2.objects.all()
+    serializer_class = OAuth2Serializer
+    permission_classes = (permissions.IsAuthenticated,
+                          IsOwner,)

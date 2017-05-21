@@ -12,8 +12,10 @@ class OAuth2VerifySerializer(serializers.Serializer):
     code = serializers.CharField(max_length=255, required=True)
 
 
-class OAuth2Serializer(serializers.ModelSerializer):
+class OAuth2Serializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = OAuth2
         fields = ('open_id', 'union_id', 'nick_name', 'gender', 'city', 'province', 'country', 'avatar_url', 'app_id',
-                  'timestamp')
+                  'timestamp', 'user')
