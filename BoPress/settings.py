@@ -25,6 +25,8 @@ SECRET_KEY = '!6nao+15my7(hdi=dmd(i5w_os_$-gpk2b)6vg$31=+b9@%3#2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGER_LEVEL = None
+
 JWT_ALLOW_REFRESH = False
 
 ALLOWED_HOSTS = []
