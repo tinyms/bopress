@@ -19,6 +19,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from rest_framework import routers, serializers, viewsets
 from django.contrib.auth.models import User
 from oauth2.views import WeXinApiView, Oauth2ViewSet
+from rest_framework.schemas import get_schema_view
 
 
 # Serializers define the API representation.
@@ -39,10 +40,14 @@ router = routers.DefaultRouter()
 router.register(r'api/1.0/users', UserViewSet)
 router.register(r'api/1.0/oauth2info', Oauth2ViewSet)
 
+schema_view = get_schema_view(title='BoPress API')
+
 urlpatterns = [
+
     url(r'^api/oauth2/$', WeXinApiView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
+    url(r'^api/schema/$', schema_view),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),

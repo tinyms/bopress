@@ -13,7 +13,7 @@ class OAuth2VerifySerializer(serializers.Serializer):
 
 
 class OAuth2Serializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.ReadOnlyField(source='user.username')
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = OAuth2
