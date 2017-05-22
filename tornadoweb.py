@@ -1,4 +1,4 @@
-__author__ = 'i@tinyms.com'
+
 
 import os
 import sys
@@ -8,7 +8,10 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 import tornado.wsgi
+
 from BoPress.log import Logger
+
+__author__ = 'i@tinyms.com'
 
 # if settings.DEBUG:
 #     ABS_PATH = "c:/tinyms/dev.projects/meizi"
