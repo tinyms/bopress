@@ -29,7 +29,10 @@ LOGGER_LEVEL = None
 
 JWT_ALLOW_REFRESH = False
 
-ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS = ['www.xianduoji.cn']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -48,8 +51,9 @@ INSTALLED_APPS = [
     'django_ajax',
     'django_filters',
     'guardian',
+    'aboutconfig',
     'oauth2',
-    'aboutconfig'
+    'train'
 ]
 
 MIDDLEWARE = [
@@ -136,14 +140,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'PAGE_SIZE': 10
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'zh_Hans'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC+8'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

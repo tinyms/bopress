@@ -21,7 +21,7 @@ ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(ABS_PATH)
 
 
-def startup(port=80):
+def startup(port=8080):
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "BoPress.settings")
 
     if django.VERSION[1] > 5:

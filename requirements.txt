@@ -7,10 +7,12 @@ djangorestframework-jwt==1.10.0
 django-guardian==1.4.8
 django-aboutconfig==0.5.3
 django-filter==1.0.4
+djangoajax==2.3.7
 django-image-cropping==1.0.4
 django-crispy-forms==1.6.1
-coreapi==2.3.0
+coreapi==2.3.1
 wechatpy==1.4.1
 xlrd==1.0.0
 Markdown==2.6.8
 easy-thumbnails==2.4.1
+pytz==2017.2
